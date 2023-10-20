@@ -6,6 +6,7 @@ import { TableProductsComponent } from '../components/table-products/table-produ
 import { ProductComponent } from './product/product.component';
 import { ProductsComponent } from './products.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({

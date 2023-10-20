@@ -1,1 +1,67 @@
-<p>product works!</p>
+<div class="body-container">
+  <div class="container center-items">
+    <form [formGroup]="formProduct">
+      <mat-card class="example-card">
+        <mat-card-header class="center-items">
+          <mat-card-title><b>Formulario de registro</b></mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <br><br>
+          <div class="wrap-flex">
+            <p class="w-50">
+              <mat-form-field appearance="outline">
+                <mat-label>ID</mat-label>
+                <input matInput placeholder="Id del usuario" formControlName="id" />
+                <mat-hint *ngIf="this.formProduct.get('id')?.invalid">Hint</mat-hint>
+              </mat-form-field>
+            </p>
+            <p class="w-50">
+              <mat-form-field appearance="outline">
+                <mat-label>Nombre</mat-label>
+                <input matInput placeholder="Nombre" formControlName="name" />
+                <mat-hint *ngIf="this.formProduct.get('name')?.invalid && (this.formProduct.get('name')?.dirty || this.formProduct.get('name')?.touched)">Este campo es requerido</mat-hint>
+              </mat-form-field>
+            </p>
+            <p class="w-50">
+              <mat-form-field appearance="outline">
+                <mat-label>Descripción</mat-label>
+                <input matInput placeholder="Descripción" formControlName="description" />
+                <mat-hint *ngIf="this.formProduct.get('description')?.invalid && (this.formProduct.get('description')?.dirty || this.formProduct.get('description')?.touched)">Este campo es requerido</mat-hint>
+              </mat-form-field>
+            </p>
+            <p class="w-50">
+              <mat-form-field appearance="outline">
+                <mat-label>Logo</mat-label>
+                <input matInput placeholder="Logo" formControlName="logo" />
+                <mat-hint *ngIf="this.formProduct.get('logo')?.invalid && (this.formProduct.get('logo')?.dirty || this.formProduct.get('logo')?.touched)">Este campo es requerido</mat-hint>
+              </mat-form-field>
+            </p>
+            <p class="w-50">
+              <mat-form-field appearance="outline">
+                <mat-label>Fecha de liberación</mat-label>
+                <input matInput readonly [matDatepicker]="date_release" formControlName="date_release" (dateChange)="valueChanged($event)">
+                <mat-hint *ngIf="this.formProduct.get('date_release')?.invalid && (this.formProduct.get('date_release')?.dirty || this.formProduct.get('date_release')?.touched)">Este campo es requerido en formato DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="date_release"></mat-datepicker-toggle>
+                <mat-datepicker #date_release></mat-datepicker>
+              </mat-form-field>
+            </p>
+            <p class="w-50">
+              <mat-form-field appearance="outline">
+                <mat-label>Fecha de liberación</mat-label>
+                <input matInput readonly [matDatepicker]="date_revision" formControlName="date_revision" [(ngModel)]="date">
+                <mat-hint *ngIf="this.formProduct.get('date_revision')?.invalid && (this.formProduct.get('date_revision')?.dirty || this.formProduct.get('date_revision')?.touched)">Seleccione la fecha de liberación</mat-hint>
+                <mat-datepicker-toggle disabled matIconSuffix [for]="date_revision"></mat-datepicker-toggle>
+                <mat-datepicker #date_revision [startAt]="date"></mat-datepicker>
+              </mat-form-field>
+            </p>
+          </div>
+        </mat-card-content>
+        <mat-card-actions class="center-items min-space-item">
+          <button mat-raised-button (click)="resetForm()"><b>Reiniciar</b></button>
+          <button mat-raised-button color="primary" [disabled]="this.formProduct.invalid" (click)="submitForm()"><b>Enviar</b></button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </div>
+</div>

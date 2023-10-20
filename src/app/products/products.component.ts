@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductoService } from '../services/producto.service';
+import { Product } from '../models/product';
 
 @Component({
   selector: 'app-products',
@@ -7,6 +8,8 @@ import { ProductoService } from '../services/producto.service';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent {
+
+  productList!: Product[];
 
   constructor(private productService: ProductoService){}
 
@@ -16,7 +19,9 @@ export class ProductsComponent {
 
   getProducts(){
     this.productService.getProductList().subscribe((productList: any) => {
-      console.log('productList', productList)
+      this.productList = productList
+    }, (error: any) => {
+      console.log('llego error',error)
     })
   }
 

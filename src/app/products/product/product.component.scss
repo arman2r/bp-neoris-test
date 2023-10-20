@@ -1,0 +1,26 @@
+.example-card {
+  max-width: 600px;
+}
+.center-items {
+  align-items: center;
+  justify-content: center;
+}
+
+.mat-mdc-card-header {
+  padding-bottom: 16px;
+}
+
+.mat-mdc-card-actions{
+  padding: 40px 0 20px;
+}
+
+.mat-mdc-card-title {
+  font-size: 1.4rem;
+}
+.min-space-item {
+  display: flex;
+  gap: 50px;
+}
+.mdc-button{
+  height: 50px;
+}

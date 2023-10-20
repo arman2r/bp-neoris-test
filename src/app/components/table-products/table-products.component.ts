@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild, Input, SimpleChanges } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Product } from 'src/app/models/product';
@@ -8,6 +8,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { CommonModule } from '@angular/common';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { RouterModule } from '@angular/router';
 
 
 @Component({
@@ -15,11 +16,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   templateUrl: './table-products.component.html',
   styleUrls: ['./table-products.component.scss'],
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, CommonModule, MatTableModule, MatPaginatorModule, MatButtonModule, MatIconModule, MatMenuModule],
+  imports: [MatFormFieldModule, RouterModule, MatInputModule, CommonModule, MatTableModule, MatPaginatorModule, MatButtonModule, MatIconModule, MatMenuModule],
 })
 export class TableProductsComponent implements AfterViewInit {
   displayedColumns: string[] = ['logo', 'name', 'description', 'date_release', 'date_revision'];
-  dataSource = new MatTableDataSource<Product>(ELEMENT_DATA);
+  @Input() dataTable: Product[] = [];
+  dataSource = new MatTableDataSource<Product>(this.dataTable);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -29,7 +31,15 @@ export class TableProductsComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
+    console.log(this.dataTable)
     this.dataSource.paginator = this.paginator;
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.dataTable) { // also add this check
+      //console.log('Input data changed:', this.dataTable);
+      this.dataSource.data = this.dataTable;
+    }
   }
 }
 

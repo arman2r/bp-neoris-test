@@ -19,7 +19,7 @@ export class AppInterceptor implements HttpInterceptor {
     if (currentUser) {
       request = request.clone({
         setHeaders: {
-          'Authorization': `Token ${currentUser}`,
+          'authorId': `${currentUser}`,
           'Cache-control': 'no-cache',
           'Access-Control-Allow-Origin': '*',
           'Content-Type': 'application/json',

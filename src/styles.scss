@@ -144,6 +144,10 @@ $mat-dark-theme: mat.define-dark-theme((
   @include mat.all-component-colors($mat-dark-theme);
 }
 
+$bigGap: 20px;
+$mediumGap: 10px;
+$smallGap: 6px;
+
 /* You can add global styles to this file, and also import other style files */
 
 html,
@@ -174,4 +178,17 @@ body {
 }
 .w-100 {
   width: 100%;
+}
+
+.w-50{
+  width: calc(50% - $bigGap);
+  .mat-mdc-form-field{
+    width: 100%;
+  }
+}
+
+.wrap-flex{
+  display: flex;
+  flex-flow: wrap;
+  gap: $bigGap;
 }

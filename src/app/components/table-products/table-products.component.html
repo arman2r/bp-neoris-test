@@ -9,7 +9,7 @@
     />
   </mat-form-field>
   <div>
-    <button mat-raised-button color="primary" class="height-stretch">Agregar</button>
+    <button mat-raised-button color="primary" class="height-stretch" [routerLink]="['new-product']"><b>Agregar</b></button>
   </div>
 </div>
 
@@ -18,7 +18,7 @@
     <!-- Position Column -->
     <ng-container matColumnDef="logo">
       <th mat-header-cell *matHeaderCellDef>Logo</th>
-      <td mat-cell *matCellDef="let element">{{ element.logo }}</td>
+      <td mat-cell *matCellDef="let element"><div class="logo"><img [src]="element.logo" [alt]="element.name"></div></td>
     </ng-container>
 
     <!-- Name Column -->
