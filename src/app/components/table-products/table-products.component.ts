@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { RouterModule } from '@angular/router';
+import { ProductoService } from 'src/app/services/producto.service';
 
 
 @Component({
@@ -25,6 +26,8 @@ export class TableProductsComponent implements AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
+  constructor(private productService: ProductoService){}
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -34,6 +37,16 @@ export class TableProductsComponent implements AfterViewInit {
     console.log(this.dataTable)
     this.dataSource.paginator = this.paginator;
   }
+
+  deleteProduct(id: string){
+    console.log('id',id)
+    this.productService.deleteProduct(id).subscribe((res: any) => {
+      console.log('elimino', res)
+    }, (error) => {
+      console.log('error', error)
+    })
+  }
+
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.dataTable) { // also add this check

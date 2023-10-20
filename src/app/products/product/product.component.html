@@ -59,7 +59,7 @@
         </mat-card-content>
         <mat-card-actions class="center-items min-space-item">
           <button mat-raised-button (click)="resetForm()"><b>Reiniciar</b></button>
-          <button mat-raised-button color="primary" [disabled]="this.formProduct.invalid" (click)="submitForm()"><b>Enviar</b></button>
+          <button mat-raised-button color="primary" [disabled]="this.formProduct.invalid || isSelf" (click)="submitForm()"><b>{{txtBtnSelf}}</b></button>
         </mat-card-actions>
       </mat-card>
     </form>
