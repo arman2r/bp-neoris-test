@@ -1,0 +1,9 @@
+.bar-top-table {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.height-stretch {
+  height: calc(100% - 20px);
+}
