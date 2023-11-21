@@ -25,4 +25,10 @@ export class ProductsComponent {
     })
   }
 
+  removeItem(newItem: boolean) {
+    if(newItem){
+      this.getProducts()
+    }
+  }
+
 }

@@ -1,0 +1,31 @@
+<div mat-dialog-content>
+  <h5 mat-dialog-title>{{ data.description }}</h5>
+</div>
+<div mat-dialog-actions class="center-items-footer">
+  <button
+    *ngIf="data.actions"
+    mat-button
+    class="cancel-btn"
+    (click)="onNoClick()"
+  >
+    Cancelar
+  </button>
+  <button
+    *ngIf="data.actions"
+    mat-button
+    class="confirm-btn"
+    [mat-dialog-close]="!confirm"
+    cdkFocusInitial
+  >
+    Confirmar
+  </button>
+  <button
+    *ngIf="!data.actions"
+    mat-button
+    class="confirm-btn"
+    [mat-dialog-close]="!confirm"
+    cdkFocusInitial
+  >
+    Ok
+  </button>
+</div>

@@ -1,5 +1,5 @@
 <div class="bar-top-table">
-  <mat-form-field appearance="outline">
+  <mat-form-field appearance="outline" color="accent" class="bg-color-inpt">
     <mat-label>Search...</mat-label>
     <input
       matInput
@@ -13,7 +13,7 @@
   </div>
 </div>
 
-<div class="mat-elevation-z8">
+<div class="mat-elevation-z8 content-table">
   <table mat-table [dataSource]="dataSource">
     <!-- Position Column -->
     <ng-container matColumnDef="logo">
@@ -58,11 +58,11 @@
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item [routerLink]="['product-edit', element.id]">
+            <a mat-menu-item [routerLink]="['product-edit', element.id]">
               <mat-icon color="secondary">edit</mat-icon>
               <span>Editar registro</span>
-            </button>
-            <button mat-menu-item (click)="deleteProduct(element.id)">
+            </a>
+            <button mat-menu-item (click)="deleteProduct(element.id, element.name)">
               <mat-icon color="warn">delete</mat-icon>
               <span>Eliminar registro</span>
             </button>
@@ -72,10 +72,11 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr> 
   </table>
 
   <mat-paginator
+    color="accent"
     [pageSizeOptions]="[5, 10, 20]"
     showFirstLastButtons
     aria-label="Select page of periodic elements"

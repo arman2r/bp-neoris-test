@@ -35,3 +35,13 @@ table {
     }
   }
 }
+
+.content-table {
+  table{
+    @media(max-width:767px){
+      overflow-x: auto;
+      display: block;
+      width: 100%;
+    }
+  }
+} 

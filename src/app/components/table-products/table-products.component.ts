@@ -1,15 +1,16 @@
-import { AfterViewInit, Component, ViewChild, Input, SimpleChanges } from '@angular/core';
+import { AfterViewInit, Component, ViewChild, Input, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Product } from 'src/app/models/product';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
 import { CommonModule } from '@angular/common';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { RouterModule } from '@angular/router';
 import { ProductoService } from 'src/app/services/producto.service';
+import { AlertService } from 'src/app/services/alert.service';
 
 
 @Component({
@@ -22,11 +23,12 @@ import { ProductoService } from 'src/app/services/producto.service';
 export class TableProductsComponent implements AfterViewInit {
   displayedColumns: string[] = ['logo', 'name', 'description', 'date_release', 'date_revision'];
   @Input() dataTable: Product[] = [];
+  @Output() deleteItem = new EventEmitter<boolean>();
   dataSource = new MatTableDataSource<Product>(this.dataTable);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private productService: ProductoService){}
+  constructor(private productService: ProductoService, private alert: AlertService) { }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -34,18 +36,47 @@ export class TableProductsComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    console.log(this.dataTable)
+    //console.log(this.dataTable)
     this.dataSource.paginator = this.paginator;
   }
 
-  deleteProduct(id: string){
-    console.log('id',id)
-    this.productService.deleteProduct(id).subscribe((res: any) => {
+  deleteProduct(id: string, name: string) {
+    console.log('id', id)
+    const desc = { 'description': `¿Estas seguro de eliminar el producto ${name}?`, 'actions': true }
+    this.alert.open(desc);
+    this.alert.afterClose().subscribe(res => {
+      console.log('respuesta service', res)
+      if (res === true) {
+        this.productService.deleteProduct(id).subscribe((res: any) => {
+          console.log('elimino', res)
+          desc.description = 'Producto Eliminado.'
+          desc.actions = false
+          this.alert.open(desc);
+          this.alert.afterClose().subscribe(confirm => {
+            this.confirmDelete(true)
+          })
+        }, (error) => {
+          console.log('error', error)
+          desc.description = 'Error al eliminar el producto, intente nuevamente.'
+          desc.actions = false 
+          this.alert.open(desc);
+          this.alert.afterClose().subscribe(confirm => {
+            this.confirmDelete(false)
+          })
+        })
+      }
+    })
+    /*this.productService.deleteProduct(id).subscribe((res: any) => {
       console.log('elimino', res)
     }, (error) => {
       console.log('error', error)
-    })
+    })*/
   }
+
+  confirmDelete(value: boolean) {
+    this.deleteItem.emit(value);
+  }
+
 
 
   ngOnChanges(changes: SimpleChanges) {

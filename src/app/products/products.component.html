@@ -1,5 +1,9 @@
 <div class="body-container">
   <div class="container">
-    <app-table-products [dataTable]="this.productList" class="w-100"></app-table-products>
+    <app-table-products
+      [dataTable]="this.productList"
+      (deleteItem)="removeItem($event)"
+      class="w-100"
+    ></app-table-products>
   </div>
 </div>

@@ -1,0 +1,35 @@
+.center-items-footer {
+    align-items: center;
+    justify-content: center;
+    padding: 20px 30px;
+    border-top: 1px solid rgba(0,0,0,.1);
+    box-sizing: border-box;
+}
+
+.confirm-btn {
+    background: rgba(var(--primary-color-rgb), .4) !important;
+    color: rgba(var(--accent-color-rgb), .8) !important;
+    font-weight: 700 !important;
+    transition: all ease .3s; 
+    padding: 25px;
+    box-sizing: border-box;
+    flex-grow: 1;
+    &:hover {
+        background: rgba(var(--primary-color-rgb), 1) !important;
+        color: rgba(var(--accent-color-rgb), 1) !important;
+    }
+}
+
+.cancel-btn{
+    background: rgba(var(--accent-color-rgb), .3) !important;
+    color: rgba(var(--accent-color-rgb), .8) !important;
+    font-weight: 700 !important;
+    transition: all ease .3s;
+    padding: 25px;
+    box-sizing: border-box;
+    flex-grow: 1;
+    &:hover {
+        background: rgba(var(--accent-color-rgb), 1) !important;
+        color: rgba(var(--primary-color-rgb), 1) !important;
+    }
+}

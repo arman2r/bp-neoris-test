@@ -11,10 +11,13 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppInterceptor } from './services/app.interceptor';
+import { AlertComponent } from './components/alert/alert.component';
+import { AlertService } from './services/alert.service';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
     declarations: [
-        AppComponent,
+        AppComponent
     ],
     bootstrap: [AppComponent],
     imports: [
@@ -24,10 +27,12 @@ import { AppInterceptor } from './services/app.interceptor';
         MatToolbarModule,
         MatButtonModule,
         MatIconModule,
-        HttpClientModule
+        HttpClientModule,
+        MatDialogModule
     ],
     providers: [
-      { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true }
-    ]
+      { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
+      AlertService
+    ] 
 })
 export class AppModule { }
