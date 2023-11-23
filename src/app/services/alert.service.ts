@@ -15,8 +15,9 @@ export class AlertService {
   constructor(public dialog: MatDialog) { }
 
   open(message: any) {
+    //console.log('cual es el mensaje', this.dialogRef)
     if(this.dialogRef) {
-      this.dialogRef.close();
+      this.dialogRef.close(message);
     }
     this.dialogRef = this.dialog.open(AlertComponent, {
       data: message,

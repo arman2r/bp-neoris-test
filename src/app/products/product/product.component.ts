@@ -133,7 +133,7 @@ export class ProductComponent {
       } else {
         this.txtBtnSelf = 'Actualizar';
         const setData = res.slice(-1)[0];
-        console.log('data', setData)
+        //console.log('data', setData)
         const { id, name, description, logo, date_release, date_revision } = setData;
 
         this.formProduct.patchValue({ id, name, description, logo, date_release, date_revision });
@@ -172,7 +172,7 @@ export class ProductComponent {
       this.selfUpdProduct.verifyIdProduct(this.objSelf.id).subscribe(resVerify => {
         //console.log('verificacion', resVerify === 'true')
         if (resVerify !== 'true') {
-          console.log('paso la verificacion')
+          //console.log('paso la verificacion')
 
           if (this.getDate !== undefined) {
             this.objSelf.date_release = this.getDate;
@@ -209,7 +209,7 @@ export class ProductComponent {
           this.submitForm()
         }
       }, error => {
-        console.log('error', error)
+       // console.log('error', error)
         this.isSelf = false;
         desc.description = 'Error al comprobar existencia del producto, intente nuevamente'
         this.alert.open(desc);

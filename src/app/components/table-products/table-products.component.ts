@@ -45,7 +45,7 @@ export class TableProductsComponent implements AfterViewInit {
     const desc = { 'description': `¿Estas seguro de eliminar el producto ${name}?`, 'actions': true }
     this.alert.open(desc);
     this.alert.afterClose().subscribe(res => {
-      console.log('respuesta service', res)
+      //console.log('respuesta service', res)
       if (res === true) {
         this.productService.deleteProduct(id).subscribe((res: any) => {
           console.log('elimino', res)

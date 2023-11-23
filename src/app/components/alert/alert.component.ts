@@ -14,7 +14,7 @@ export interface DialogData {
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.scss'],
   standalone: true,
-  imports: [CommonModule, MatDialogModule, MatButtonModule]
+  imports: [CommonModule, MatDialogModule, MatButtonModule],
 })
 export class AlertComponent {
   confirm = false;

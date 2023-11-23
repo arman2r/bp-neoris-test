@@ -17,6 +17,6 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     ProductsRoutingModule,
     TableProductsComponent
-  ]
+  ],
 })
 export class ProductsModule { }
